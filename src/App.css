@@ -31,3 +31,13 @@
     transform: rotate(360deg);
   }
 }
+.list{
+  list-style: none;
+}
+.Square{
+  width:100px;
+  height: 100px;
+}
+.Palette{
+  display: flex;
+}

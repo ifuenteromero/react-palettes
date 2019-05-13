@@ -1,26 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Card from './components/Card'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+let datos;
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.getData();
+    this.state = {
+      datos: [],
+    }
+
+  }
+  getData() {
+    fetch('https://raw.githubusercontent.com/Adalab/Easley-ejercicios-de-fin-de-semana/master/data/palettes.json')
+      .then(res => res.json())
+      .then(data => this.setState({
+        datos: data.palettes,
+
+      }));
+
+
+  }
+
+  render() {
+    datos = this.state.datos;
+    return (
+      <ul>
+        <Card datos = {datos}/>
+      </ul>
+    );
+  }
+
 }
 
 export default App;
